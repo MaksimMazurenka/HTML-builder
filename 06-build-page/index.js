@@ -1,16 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const fsPromise = require('fs/promises');
-const { createBrotliCompress } = require('zlib');
 let dirDirection = path.resolve(__dirname + '/project-dist');
 let assetsDirection = path.resolve(__dirname + '/project-dist/assets');
 let htmlDirection = path.resolve(__dirname + '/project-dist/index.html');
 let csslDirection = path.resolve(__dirname + '/project-dist/style.css');
 fs.mkdir(dirDirection, { recursive: true }, err => {
-  if(err) throw err; 
+  if(err) throw err;
 });
 fs.mkdir(assetsDirection, { recursive: true }, err => {
-  if(err) throw err; 
+  if(err) throw err;
 });
 fs.writeFile(
   htmlDirection,
@@ -42,7 +41,6 @@ async function copyDirectory () {
         });
       }
       for (const copy of copies) {
-        // console.log(`06-build-page/assets/${readDir[i].name}/${copy.name}`)
         fs.copyFile(`06-build-page/assets/${dir.name}/${copy.name}`, `06-build-page/project-dist/assets/${dir.name}/${copy.name}`, (err) => {
           if (err) {
             console.log('Error Found:', err);
@@ -51,7 +49,7 @@ async function copyDirectory () {
       }
     }
   } catch(err) {
-    console.log((err)); 
+    console.log((err));
   }
 }
 copyDirectory();
